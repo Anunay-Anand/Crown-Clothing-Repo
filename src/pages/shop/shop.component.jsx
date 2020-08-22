@@ -2,6 +2,8 @@ import React from 'react';
 
 import SHOP_DATA from './shop.data.js';
 
+import PreviewCollection from '../../components/preview-collection/preview-collection.component.jsx';
+
 import '../shop/shop.styles.scss';
 
 class ShopPage extends React.Component {
@@ -10,14 +12,19 @@ class ShopPage extends React.Component {
         super(props);
 
         this.state = {
-            collections: SHOP_DATA,
+            collections: SHOP_DATA
         }
     }
 
     render() {
+        const { collections } = this.state;
         return (
-            <div>SHOP PAGE</div>
-        )
+            <div className='shop-page'>
+                {collections.map(({ id, ...otherCollectionProps }) => (
+                    <PreviewCollection key={id} {...otherCollectionProps} />
+                ))}
+            </div>
+        );
     }
 }
 
